@@ -1,0 +1,27 @@
+# Actions 
+
+Profile related 
+- User will have all details about him like
++ name, email, password, phone, region, role, designation, 
+
+- User can update password and profile picture only 
+- User will have favorite type of pages where he will have saved filter like assinged ticket to him or what ever the filter we can have
+
+Ticket related 
+create 
+- User can create ticket
+
+read
+- User can browse through ticket
+- User can fetch multiple tickets
+
+update
+- User can add comment to ticket 
+- User can attach documents to ticket 
+- User can assign ticket to other persons / Team only (It will be considered as not assigned yet but created)
+
+- User can update the status of ticket 
+- User can
+
+
+no delete just for log but after (30 days it will delete automatically)

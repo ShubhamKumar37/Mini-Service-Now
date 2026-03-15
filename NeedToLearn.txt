@@ -1,0 +1,2 @@
+1 work with prisma with postgraseDB.
+2 need to learn about these packages Logging Winston Jobs Node-cron

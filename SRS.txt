@@ -1,0 +1,455 @@
+Below is a **clean, structured requirement document** you can use as the **base specification** for your project. I wrote it in the style of a **Software Requirement Specification (SRS)** so that it becomes easier for you to:
+
+* design the **database schema**
+* design **APIs**
+* plan **backend architecture**
+* explain the project in **GitHub / interviews**
+
+You can later copy this directly into your **project documentation**.
+
+---
+
+# Mini ServiceNow – Ticket Workflow Management System
+
+*(Software Requirement Specification)*
+
+---
+
+# 1. Project Overview
+
+The goal of this project is to build a **Ticket Workflow Management System** inspired by enterprise platforms like ServiceNow.
+
+The system allows users to **create, manage, track, and resolve tickets across teams and regions** while maintaining a complete history of actions and communications.
+
+The platform is designed primarily for **workflow management and ticket lifecycle tracking** where every activity is recorded with timestamps.
+
+---
+
+# 2. End Goal
+
+The system enables a **workflow management environment** where:
+
+* Users can raise issues as tickets.
+* Tickets can be assigned to teams and individuals.
+* Teams can collaborate using comments, attachments, and activity logs.
+* Managers can monitor ticket progress and escalations.
+* Regions can manage their own tickets independently.
+* Every action performed on a ticket is logged with timestamps.
+
+The platform ensures **transparent collaboration between users, teams, and managers**.
+
+---
+
+# 3. Core Concepts of the System
+
+The system is built around the following primary components:
+
+* Users
+* Regions
+* Teams
+* Tickets
+* Ticket Activities
+* Comments
+* Attachments
+* Dashboard Analytics
+
+Each of these components plays a role in managing ticket workflows.
+
+---
+
+# 4. User Management
+
+Each user represents a person interacting with the system.
+
+## User Properties
+
+Each user will contain the following information:
+
+* Name
+* Email
+* Password
+* Phone Number
+* Region
+* Role
+* Designation
+* Profile Picture
+
+## User Actions
+
+Users can:
+
+* Login to the system
+* View and browse tickets within their region
+* Create tickets
+* Comment on tickets
+* Attach documents
+* Update ticket status
+* Assign tickets to teams or users
+* Save favorite filters for frequently used views
+
+## Profile Restrictions
+
+Users are allowed to update only:
+
+* Password
+* Profile Picture
+
+Other fields will be controlled by the **admin system**.
+
+---
+
+# 5. Region Management
+
+Regions represent **geographical areas or countries**.
+
+Example:
+
+```
+India
+USA
+Europe
+```
+
+Each region contains:
+
+* Teams
+* Users
+* Tickets
+
+## Region Access Rules
+
+* Users can only view tickets belonging to their own region.
+* Users from other regions cannot access these tickets.
+* Admin users can grant cross-region access permissions.
+
+---
+
+# 6. Team Management
+
+Teams represent groups responsible for resolving certain categories of issues.
+
+Example Teams:
+
+```
+IT Support Team
+Operational Team
+Customer Support Team
+```
+
+Each team contains:
+
+* Team members
+* Team managers
+
+## Team Managers
+
+Managers are automatically **notified of ticket activities** within their teams.
+
+They remain **in the activity loop for monitoring purposes**.
+
+Teams mainly exist to **track workflow ownership**.
+
+Even if a ticket is mistakenly assigned to another team, it can still be processed if it belongs to the same region.
+
+---
+
+# 7. Ticket Management
+
+Tickets represent issues raised by users that require attention from support teams.
+
+Tickets form the **core entity of the system**.
+
+---
+
+# 8. Ticket Properties
+
+Every ticket contains the following information.
+
+## Basic Information
+
+* Ticket Number
+* Caller Information
+* Assigned User
+* Assigned Region
+* Assigned Team
+* Ticket Category
+
+Example categories:
+
+```
+Assets
+Database
+Application Code
+Infrastructure
+```
+
+---
+
+## Ticket Description
+
+Each ticket contains:
+
+* Short Description
+* Long Description
+
+---
+
+## Ticket Relationships
+
+Tickets may reference other related tickets.
+
+Example:
+
+```
+Duplicate tickets
+Parent tickets
+Dependent tickets
+```
+
+---
+
+## Ticket Status
+
+Each ticket has a lifecycle status.
+
+Possible statuses:
+
+```
+Not Assigned
+In Progress
+On Hold
+Closed
+```
+
+---
+
+## Ticket Priority
+
+Each ticket has a priority level:
+
+```
+Low
+Medium
+High
+Critical
+```
+
+Priority determines **escalation timelines**.
+
+Example escalation rules:
+
+| Priority | Escalation Time |
+| -------- | --------------- |
+| Low      | 3 days          |
+| Medium   | 1 day           |
+| High     | 4 hours         |
+| Critical | 1 hour          |
+
+Escalation rules may:
+
+* Increase ticket priority automatically
+* Notify managers
+* Notify multiple teams
+
+---
+
+# 9. Ticket Activity Timeline
+
+Each ticket maintains a **complete activity timeline**.
+
+The activity section records all system interactions.
+
+Examples of activities:
+
+* Ticket creation
+* Ticket assignment
+* Status changes
+* Comments added
+* Files uploaded
+* Emails sent
+* Escalations triggered
+
+Each activity record includes:
+
+* Activity Type
+* Activity Description
+* Performed By
+* Timestamp
+
+---
+
+# 10. Comments System
+
+Tickets allow users to communicate using comments.
+
+Comments may include:
+
+* Text content
+* File attachments
+* Email logs
+* Alert messages
+
+---
+
+## Comment Alert Levels
+
+Comments can contain an **alert level**.
+
+Possible levels:
+
+```
+Normal
+High Alert
+```
+
+When a comment is marked as **High Alert**:
+
+* Email notifications are sent to the assigned user and managers.
+* The comment is pinned at the top of the ticket.
+* The alert remains active until acknowledged by the user.
+
+Users can remove the alert by clicking an **Acknowledge button**.
+
+---
+
+# 11. Attachments
+
+Users can attach files to tickets.
+
+Attachments may include:
+
+* Documents
+* Screenshots
+* Log files
+
+Files will be stored as **binary objects (BLOB)** and should be downloadable later.
+
+Each attachment includes:
+
+* File Name
+* File Type
+* Uploaded By
+* Upload Timestamp
+
+---
+
+# 12. Ticket Resolution
+
+Once a ticket is solved, it must contain resolution details.
+
+Required fields:
+
+* Final Resolution Comment
+* Resolution Type
+
+Resolution types include:
+
+```
+Permanent Fix
+Temporary Fix
+```
+
+Temporary fixes must include an explanatory comment.
+
+---
+
+# 13. Ticket Searching and Filtering
+
+The system must allow users to **search and filter tickets efficiently**.
+
+Tickets can be filtered using:
+
+* Priority
+* Status
+* Caller
+* Assigned User
+* Assigned Team
+* Region
+* Category
+* Date range
+
+Users can also search tickets using identifiers such as:
+
+* Ticket ID
+* Region
+* Department
+* Team
+
+---
+
+# 14. Dashboard
+
+The dashboard provides **ticket analytics for each region**.
+
+The dashboard displays:
+
+* Total tickets in the region
+* Number of open tickets
+* Number of closed tickets
+* Tickets by status
+* Tickets by priority
+* Tickets by team
+
+This information may be displayed as:
+
+* numerical summaries
+* graphs
+* charts
+
+---
+
+# 15. Data Retention Policy
+
+Tickets are **not immediately deleted**.
+
+Instead:
+
+* Tickets remain stored for logging purposes.
+* After **30 days**, old tickets may be automatically deleted using a background cleanup process.
+
+---
+
+# 16. Favorite Filters
+
+Users can save frequently used filters.
+
+Examples:
+
+```
+My Assigned Tickets
+High Priority Tickets
+Tickets from My Region
+```
+
+These filters allow users to quickly access commonly viewed ticket groups.
+
+---
+
+# 17. Non-Functional Requirements
+
+The system should support:
+
+* Role-based access control
+* Region-based data isolation
+* Secure authentication
+* File storage
+* Scalable ticket search
+* Activity logging
+
+The system should also maintain accurate timestamps for all activities.
+
+---
+
+# 18. Summary
+
+The system provides a **complete ticket lifecycle management platform** with:
+
+* region-based access
+* team collaboration
+* ticket workflows
+* activity logging
+* comments and attachments
+* escalation management
+* analytics dashboards
+
+The primary focus of the system is **workflow tracking and activity transparency**.

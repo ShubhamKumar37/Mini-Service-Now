@@ -1,0 +1,5 @@
+# Build a Mini Service now.
+- This is majorly about flow and the timestamp so we will that a lot
+
+# End Goal - 
+A user can manage workflow amoung him and his managers, college and end user.

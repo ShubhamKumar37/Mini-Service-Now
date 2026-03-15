@@ -1,0 +1,6 @@
+1 which tech stack i must choose with my current situation as for frontend i will use React only cause i don't know anyother, for bakcend i have ado.net c# or MERN stack 
+also for database i am not sure to use mongodb or sqlserver as i don't have a good grip on efcore as both of these depend on which backend i choose, so whats you opinion.
+
+2 i will first try to wrote all the requirement in a coloumn in excel sheet then next to it will be the table name which can be contributor to those requirement, by doing this i can identify which of the tables i will need and i can start with those one first.
+
+3 if i user MERN stack then i just can't make this project like normal one i have to make sure to put all the professional practicies to it so that i can make my work easy as well as i learn new tactics to write code , as previously i don't know about service folder and what we do in it so tell me more about those kind of folders and tricks frm which i can reduce the size of code with it and packages which can help to do logging or error and reduce code as much as possible 

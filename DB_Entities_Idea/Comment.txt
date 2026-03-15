@@ -1,0 +1,5 @@
+# Comment can have 
+- Text data
+- file upload data with blob object so that user can download it
+- Mails logs as a comment which are shared when any kind of activity occur 
+- comment can have alert level also (high/normal) where if someone put commetn with high alert then this will triger mail to person will be pinned to ticket above until user remove it by clicking on the acknowledge button

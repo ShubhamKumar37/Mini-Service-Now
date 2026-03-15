@@ -1,0 +1,22 @@
+#Property of Ticket
+
++ While making and working on Ticket
+- Ticket number
+- Ticket Caller Info
+- Ticket Assigned to User Info 
+- Ticket Assigned to Region Info 
+- Ticket Assigned to Team Info 
+- Ticket will have short desction and long description
+- Ticket will have other ticket related to current one 
+- Ticket will have status about it (hold, inprogress, closed, not assigned yet)
+- Ticket will have priority (low, medium, high, critical), each severity will implies the number of days of escalation and after each escalation we can define should increase the priority along with mention the managers or just mention managers 
+- Ticket will have activity section where every mail, attach docs, comments, logs will be present
+- Ticket will have category like , Assets, DB, Code etc 
+
++ After solving Ticket 
+- Ticket will have final comment of closing ticket 
+- Ticket resolution Type (Permanent, Temporary - need to give comment about it)
+
+# Finding actions 
+- Ticket can be filter on the basis of mutliple values like priorty, status, caller, assigne to and any other factor we have in our system
+- We can search ticket with there id/region/department and other stuff

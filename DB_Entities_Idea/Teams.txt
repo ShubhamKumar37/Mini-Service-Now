@@ -1,0 +1,8 @@
+These team are only just for tracking the flow
+each team will have there own type of issue assigned, it doesn't matter if a ticket is accidnetly assigned to other team if its under the same region, 
+
+Each team will have few User assigned as manager who will be always in loop for any kind of acitivity
+
+IT support Team 
+Operational Team
+Support Team  

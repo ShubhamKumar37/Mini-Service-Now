@@ -1,0 +1,4 @@
+# Things we will have on dashboard
+
+- All tickets belong to region
+- Tickets counts/status/progress in form of graphs or number

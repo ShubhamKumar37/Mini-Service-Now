@@ -1,0 +1,4 @@
+- Region is Area/Country where same type of team will present 
+- Region will allow only its own member to browser through their ticket no other member from different region can look until have the permission to do so, and this will be added by only admin team 
+
+- Will contain all ticket under its region 
