@@ -1,0 +1,216 @@
+////////////////////////////////////////////////////////////
+// USER
+////////////////////////////////////////////////////////////
+Table users {
+  id int [pk]
+  name varchar
+  email varchar
+  profile_image varchar
+  password varchar
+  phone varchar
+  role varchar
+  designation_id int
+  department_id int
+  region_id int
+  team_id int
+  team_lead_id int
+  refresh_token varchar
+}
+
+////////////////////////////////////////////////////////////
+// REGION
+////////////////////////////////////////////////////////////
+Table regions {
+  id int [pk]
+  name varchar
+  description varchar
+}
+
+////////////////////////////////////////////////////////////
+// TEAM
+////////////////////////////////////////////////////////////
+Table teams {
+  id int [pk]
+  name varchar
+  description varchar
+  region_id int
+}
+
+////////////////////////////////////////////////////////////
+// DEPARTMENT
+////////////////////////////////////////////////////////////
+Table departments {
+  id int [pk]
+  name varchar
+  description varchar
+}
+
+////////////////////////////////////////////////////////////
+// DEPARTMENT MANAGERS (MANY-TO-MANY)
+////////////////////////////////////////////////////////////
+Table department_managers {
+  id int [pk]
+  user_id int
+  department_id int
+}
+
+////////////////////////////////////////////////////////////
+// CATEGORY
+////////////////////////////////////////////////////////////
+Table categories {
+  id int [pk]
+  name varchar
+  description varchar
+}
+
+////////////////////////////////////////////////////////////
+// TICKETS
+////////////////////////////////////////////////////////////
+Table tickets {
+  id int [pk]
+  ticket_number varchar
+
+  caller_id int
+  region_id int
+  assign_to_id int
+  team_id int
+  category_id int
+
+  short_description varchar
+  description text
+
+  status varchar
+  ticket_priority varchar
+
+  escalation_level int
+
+  created_at datetime
+  updated_at datetime
+  completed_at datetime
+
+  fix_type varchar
+  fix_comment varchar
+
+  parent_ticket_id int
+  deleted_at datetime
+}
+
+////////////////////////////////////////////////////////////
+// COMMENTS
+////////////////////////////////////////////////////////////
+Table comments {
+  id int [pk]
+  ticket_id int
+  user_id int
+
+  message text
+
+  alert_level varchar
+  is_pinned boolean
+  is_acknowledged boolean
+
+  created_at datetime
+}
+
+////////////////////////////////////////////////////////////
+// ATTACHMENTS
+////////////////////////////////////////////////////////////
+Table attachments {
+  id int [pk]
+  ticket_id int
+  comment_id int
+
+  file_url varchar
+  file_name varchar
+  file_type varchar
+
+  uploaded_by int
+  created_at datetime
+}
+
+////////////////////////////////////////////////////////////
+// TICKET ACTIVITY
+////////////////////////////////////////////////////////////
+Table ticket_activity {
+  id int [pk]
+  ticket_id int
+
+  action_type varchar
+  description text
+
+  performed_by int
+  created_at datetime
+}
+
+////////////////////////////////////////////////////////////
+// FAVORITE FILTERS
+////////////////////////////////////////////////////////////
+Table favorite_filters {
+  id int [pk]
+  user_id int
+
+  name varchar
+  filter_query text
+
+  created_at datetime
+}
+
+////////////////////////////////////////////////////////////
+// EMAIL LOGS
+////////////////////////////////////////////////////////////
+Table email_logs {
+  id int [pk]
+  ticket_id int
+
+  to_user_id int
+  subject varchar
+  body text
+
+  status varchar
+  created_at datetime
+}
+
+////////////////////////////////////////////////////////////
+// RELATIONSHIPS
+////////////////////////////////////////////////////////////
+
+// User relations
+Ref: users.department_id > departments.id
+Ref: users.region_id > regions.id
+Ref: users.team_id > teams.id
+Ref: users.team_lead_id > users.id
+
+// Team
+Ref: teams.region_id > regions.id
+
+// Department Managers
+Ref: department_managers.user_id > users.id
+Ref: department_managers.department_id > departments.id
+
+// Tickets
+Ref: tickets.caller_id > users.id
+Ref: tickets.assign_to_id > users.id
+Ref: tickets.team_id > teams.id
+Ref: tickets.category_id > categories.id
+Ref: tickets.region_id > regions.id
+Ref: tickets.parent_ticket_id > tickets.id
+
+// Comments
+Ref: comments.ticket_id > tickets.id
+Ref: comments.user_id > users.id
+
+// Attachments
+Ref: attachments.ticket_id > tickets.id
+Ref: attachments.comment_id > comments.id
+Ref: attachments.uploaded_by > users.id
+
+// Ticket Activity
+Ref: ticket_activity.ticket_id > tickets.id
+Ref: ticket_activity.performed_by > users.id
+
+// Favorite Filters
+Ref: favorite_filters.user_id > users.id
+
+// Email Logs
+Ref: email_logs.ticket_id > tickets.id
+Ref: email_logs.to_user_id > users.id
