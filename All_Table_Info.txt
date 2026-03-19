@@ -1,0 +1,50 @@
+User - 
+designation_id - the position of employee(like SDE, manager)
+department_id - employee belong to which department like HR, IT, Support, OPs,
+region_id - employee belong to which region, NA, APAC
+team_id - employee belong to which team, 
+support_NOida, ops_kolkata, 
+team_lead_id - employee's team lead id 
+refresh_token - just to refresh the access token 
+
+department_managers - maintaining a m-n relationship between user and department, 
+
+-Attachments - just keep track of documents uploded in a ticket 
+uploaded_by - userId
+
+-Regions - Its just simple area name under which employee will work
+
+- Categories - this will have the type of ticket, code related, INFRA related, work related, auth related, like those only 
+and also on the basis of this we will create our ticket number like if its DB related 
+then DB-Date.now()-RandomNumber(100, 999);
+
+- Ticket Activity - what ever we are doing in a ticket like comments, uploading docs or changing anything everything will be saved in this table, and these are going to be in mail to relevent people
+actionType - upload, comment, statusChange,
+descripiton - this will be the content which will be shared in the mail body, 
+
+-Teams - represent the team name and what they do 
+
+- department - represent the department name and description
+
+comment - the actual form of log 
+message - the text user will add or may be not if any document is created, 
+alert_level - this will represent wheather that the comment will be pinned to top of ticket or not. 
+rest will identify if user clicked on cross button or not.
+
+i think we can remove email_log cause in ticket activity we already storing what happen at what stage and we will send email for that, and if we already have email then we do not need any other table to keep the log we already have emails as log but still if there is anohter point of view of yours and why we should keep it please tell me 
+
+- favorite_filter- this will store the user preference filters which can help user to naviagate to his most common area for on our webpage like assigned to him only 
+
+
+- Ticket 
+ticket number - from which we will identify a ticket in UI
+callerid- user id of that person who make the ticket 
+region_id - ticket belong to which region 
+assigned_to_id - ticket assigned to which user 
+team_id - which team will handle that ticket 
+category_id - type of ticket
+ticket_priority - how much time will be given to ticket, 
+escalation_level - i am not sure about it how to do it but still, i can guess that according to priority we will have some kind of mail spamming on user and managers so that they can solve the ticket but you have to explain it properly why we are using this. 
+fix_type - permanent/temporary ,
+parent_ticket_id - any Parent ticket belong to this, i assume this mean if some ticket is created due to some issue and in middle of solving it user find another issue which need to be solved so user create another ticket on which he will give this ticket id as parent id, 
+delete_at - acciedently created ticket which will be saved in database for 30 days after this taht ticket will be deleted

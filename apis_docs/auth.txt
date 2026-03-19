@@ -1,0 +1,15 @@
+login - 
+email, password
+
+signup-
+name, email, password, role, 
+
+resetPassword - 
+newpassword, confirmpassword, email, otp
+
+resetPasswordSendLink - 
+email
+
+getMe - accessToken
+
+isAdmin - accessToken

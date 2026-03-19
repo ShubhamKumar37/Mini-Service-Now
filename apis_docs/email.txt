@@ -1,0 +1,6 @@
+sendEmail
+mailTo, cc, subject, bodyContent
+
+type of mails
+newActivityMail--
+newCommentMail, newTicketAssignedMail, escalationMail, ticketStatusChangeMail, 

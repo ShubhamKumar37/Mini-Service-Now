@@ -1,0 +1,19 @@
+gets 
+
+getSingleTicket - 
+ticketNumber, 
+
+getMultipeTickets - 
+query
+
+post 
+
+createTicket - 
+callerid, regionId, teamId, assignToId, categoryId, description, shortDescription, ticketPriority, parentTicketId
+
+put 
+
+updateTicketStatus - 
+ticketId, statusType, fixComment, fixType, 
+
+
